@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="marquee">
+  <p>· VELUR ME · VELUR ME · VELUR ME · VELUR ME · VELUR ME · VELUR ME </p>
+</div>
+
+<style>
+body{
+    margin: 0;
+}
+.marquee {
+  overflow: hidden;
+  display: flex;
+}
+
+.marquee p {
+ margin-top: 0;
+ padding: 5px 0;
+  font-size: 24px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  background: #ffeed7;
+}
+</style>
+
+<script>
+    function Marquee(selector, speed) {
+  const parentSelector = document.querySelector(selector);
+  const clone = parentSelector.innerHTML;
+  const firstElement = parentSelector.children[0];
+  let i = 0;
+  console.log(firstElement);
+  parentSelector.insertAdjacentHTML('beforeend', clone);
+  parentSelector.insertAdjacentHTML('beforeend', clone);
+  parentSelector.insertAdjacentHTML('beforeend', clone);
+
+  setInterval(function () {
+    firstElement.style.marginLeft = `-${i}px`;
+    if (i > firstElement.clientWidth) {
+      i = 0;
+    }
+    i = i + speed;
+  }, 0);
+}
+
+//after window is completed load
+//1 class selector for marquee
+//2 marquee speed 0.2
+window.addEventListener('load', Marquee('.marquee', 0.2))
+</script>
+</body>
+</html>
